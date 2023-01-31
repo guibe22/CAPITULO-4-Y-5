@@ -1,0 +1,74 @@
+﻿@page "/Ejercicio5"
+
+<div class= "card">
+    <div class= "card-header">
+        <h1> ESCRIBIR DE NUMERO A LETRAS</h1>
+    </div>
+
+    <div class= "card-body">
+
+        <div class= "form-group">
+            <label for="txtNumero"> Ingrese el numero:</label>
+            <input type="number" name="txtNumero" id="txtNumero" @bind-value="numero">
+        </div>
+        <button class= "btn btn-primary" @onclick="Transformar">Escribir</button>
+
+        <p>@resultado</p>
+
+
+        
+    </div>
+
+</div>
+
+@code{
+    int numero;
+    String? numeroLetra;
+    String? resultado;
+
+
+    void Transformar(){
+         string[] unidades = new string[] { "cero", "uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve" };
+        string[] decenas = new string[] { "diez", "veinte", "treinta", "cuarenta", "cincuenta", "sesenta", "setenta", "ochenta", "noventa" };
+         string[] decenasYunidades = new string[] { "once", "doce", "trece", "catorce", "quince", "dieciseis", "diecisiete", "dieciocho", "diecinueve" };
+
+
+        if(numero>0){
+
+            if (numero == 10)
+         {
+            numeroLetra= "diez";
+            }
+         else if (numero < 10)
+        {
+            numeroLetra= unidades[numero];
+        
+         }
+        else if (numero < 20)
+        {
+            numeroLetra= decenasYunidades[numero - 11];
+        }
+        else if (numero < 100)
+        {
+            numeroLetra= decenas[numero / 10 - 1] + ((numero % 10 != 0) ? " y " + unidades[numero % 10] : "");
+        }
+        else if(numero >= 100){
+
+        numeroLetra= "Mayor a 99";
+            
+        }
+        }
+        
+            
+
+         resultado= numero + " en letras es "+ numeroLetra;
+
+
+
+    }
+
+
+
+
+
+}

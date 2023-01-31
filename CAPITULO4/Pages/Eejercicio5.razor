@@ -1,0 +1,100 @@
+﻿@page "/Ejercicio5"
+
+<div class="card">
+    <div class= "card-header">
+        <h1> calcular edades</h1>
+    </div>
+
+    <div class="card-body">
+        <div class=form-group>
+            <label for="txtNombre">Nombre:</label>
+        <input type="text" class="form-control col-1" name="txtNombre" id="txtNombre" @bind-value="Nombre">
+        </div>
+
+        <div class="form-group">
+            <label for="txtEdad">   Edad:</label>
+        <input type="number" class="form-control col-1" name="txtEdad" id="txtEdad" @bind-value="Edad">
+
+        
+        </div>
+
+        <div class="form-group">
+        <button class="btn btn-primary"  @onclick="Agregar">Agregar Persona</button>
+         <button class="btn btn-success col-2" @onclick="Calcular">Calcular</button>
+
+        </div>
+       
+    
+    
+        <p>@personaMenor</p>
+        <p>@personaMayor</p>
+
+    </div>
+   
+
+
+
+</div>
+
+
+@code {
+
+    public class Persona{
+        public String? Nombre { get; set; }
+        public int Edad { get; set; }
+    }
+
+    Persona persona = new Persona();
+
+    String? Nombre;
+    int Edad;
+
+    List<Persona> listaPersonas = new List<Persona>();
+
+    String personaMayor= " ";
+    String personaMenor= " ";
+
+
+      void Agregar(){
+
+
+        if(Edad> 0 && !string.IsNullOrEmpty(Nombre)){
+
+            persona.Nombre= Nombre;
+            persona.Edad = Edad;
+            listaPersonas.Add(persona);
+            persona= new Persona();
+
+            Nombre= " ";
+            Edad= 0;
+        }
+      }  
+
+      void Calcular(){
+
+         Persona Mayor= listaPersonas[0];
+         Persona Menor= listaPersonas[0];
+
+        foreach (var i in listaPersonas)
+        {
+
+            if (i.Edad < Menor.Edad)
+                {
+                    Menor = i;
+                }
+                if (i.Edad > Mayor.Edad)
+                {
+                    Mayor = i;
+                }
+        }
+
+        personaMayor= "la persona mas vieja es " + Mayor.Nombre +" con "+ Mayor.Edad +" años de edad.";
+        personaMenor= "la persona mas Joven es " + Menor.Nombre +" con "+ Menor.Edad +" años de edad.";
+
+
+      }
+
+
+
+
+}

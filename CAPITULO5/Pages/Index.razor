@@ -1,0 +1,40 @@
+﻿@page "/"
+
+<div class= "card">
+    <div class= "card-header">
+        <h1> CALCULAR FACTORIAL</h1>
+    </div>
+
+    <div class= "card-body">
+
+        <div class= "form-group">
+            <label for="txtNumero"> Ingrese el numero:</label>
+            <input type="number" name="txtNumero" id="txtNumero" @bind-value="numero">
+        </div>
+        <button class= "btn btn-primary" @onclick="Calcular">Calcular</button>
+
+        <p>@resultado</p>
+
+
+        
+    </div>
+
+</div>
+
+@code{
+    int numero;
+    String? resultado;
+
+    void Calcular(){
+
+      int result = 1;
+            for (int i = 1; i <= numero; i++)
+            {
+                result *= i;
+            }
+        resultado= "el factorial de " + numero + " es " + result;
+        
+    }
+
+
+}

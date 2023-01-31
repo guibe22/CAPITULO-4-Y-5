@@ -1,0 +1,63 @@
+﻿@page "/Ejercicio2"
+
+<div class= "card" >
+
+    <div class= "card-header">
+
+        <h1>CALCULAR POTENCIAS</h1>
+    </div>
+
+    <div class= "card-body">
+        <div class="form-group">
+            <label for="txtNumero">ingrese el Numero:</label>
+           <input type="number" name="txtNumero" id="txtNumero" @bind="Numero">
+        </div>
+
+        <div class="form-group">
+            <label for="txtPotencia"> ingrese la Potencia:</label>
+           <input type="number"  name="txtPotencia" id="txtPotencia" @bind="potencia">
+
+           <button class= "btn btn-primary " @onclick="CalcularPotencia" > Calcular Potencia</button>
+        </div>
+
+        
+
+        <p> @Resultado</p>
+
+
+
+    </div>
+
+
+     </div>
+
+
+
+
+@code {
+
+    int Numero;
+    int potencia;
+   
+
+    String Resultado= " ";
+
+
+    void CalcularPotencia(){
+
+         int Operacion=1;
+
+        for (int i = 0; i < potencia; i++)
+        {
+            Operacion= Operacion*Numero;
+        
+        
+        }
+    
+        Resultado= Numero + " elevado a "+ potencia + " es igual a " + Operacion;
+
+   
+    }
+
+
+}
